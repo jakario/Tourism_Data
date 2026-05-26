@@ -1,0 +1,32 @@
+# Database files (contains scraped OSM data, not secrets but too large for git)
+data/tourism_cache.db
+data/*.db
+data/*.db-wal
+data/*.db-shm
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Config with API keys (keep template, ignore actual)
+config/config.yaml
+!config/config.yaml.template
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# Logs
+*.log
+/tmp/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo

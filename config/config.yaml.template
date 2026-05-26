@@ -1,0 +1,33 @@
+# ============================================================
+# Tourism Data Caching System - Configuration
+# ============================================================
+
+database:
+  path: "data/tourism_cache.db"
+  cache_ttl_hours: 24          # ข้อมูลจะถูก cache ไว้ 24 ชม.
+
+api_keys:
+  data_go_th: ""               # YOUR_TOKEN_HERE - สมัครได้ที่ api.data.go.th
+  tat_api_key: ""              # YOUR_TAT_API_KEY
+  dasta_api_key: ""            # YOUR_DASTA_API_KEY
+
+rate_limits:
+  max_calls_per_day: 800       # ปลอดภัยไว้ที่ 800 จาก 1000 ที่จำกัด
+  min_interval_seconds: 2      # เว้นระยะ 2 วิ ระหว่าง call
+
+cache_strategy:
+  mode: "cache_first"           # cache_first | refresh_always | hybrid
+  stale_while_revalidate: true  # คืน cached data ทันที + อัปเดตพื้นหลัง
+
+# Tourism provinces to track (auto-fetch)
+target_provinces:
+  - "เชียงใหม่"
+  - "ภูเก็ต"
+  - "ชลบุรี"
+  - "กระบี่"
+  - "สุราษฎร์ธานี"
+  - "กรุงเทพมหานคร"
+  - "ประจวบคีรีขันธ์"
+  - "พังงา"
+  - "อยุธยา"
+  - "เชียงราย"
