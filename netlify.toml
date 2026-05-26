@@ -2,7 +2,6 @@
   publish = "public"
   command = "mkdir -p public && cp templates/index.html public/index.html"
 
-# SPA fallback
 [[redirects]]
   from = "/*"
   to = "/index.html"

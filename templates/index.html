@@ -191,9 +191,9 @@ canvas { max-height: 250px; }
 
 <script>
 // API base URL — set to full URL when deploying frontend separately (e.g. Netlify)
-// Example: const API_BASE = 'https://tourismo-api.onrender.com';
+// Can be overridden via URL param: ?api=https://your-api.com
 // Leave empty ('') when Flask serves both frontend and API (same origin)
-const API_BASE = '';
+const API_BASE = (new URLSearchParams(location.search)).get('api') || '';
 
 let map;
 let markersLayer = L.markerClusterGroup({
