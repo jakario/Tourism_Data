@@ -4,3 +4,4 @@ flask>=3.0
 gunicorn>=22.0
 chardet>=5.0
 openpyxl>=3.1
+python-serverless-wsgi>=0.4.0

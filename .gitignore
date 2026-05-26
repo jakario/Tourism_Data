@@ -1,6 +1,5 @@
-# Database files (contains scraped OSM data, not secrets but too large for git)
-data/tourism_cache.db
-data/*.db
+# Database files — keep .db out of git, but commit the pre-built cache
+# data/tourism_cache.db is committed so Netlify build can use it
 data/*.db-wal
 data/*.db-shm
 

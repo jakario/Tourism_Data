@@ -1,6 +1,14 @@
 [build]
   publish = "public"
-  command = "mkdir -p public && cp templates/index.html public/index.html"
+  command = "cp templates/index.html public/index.html"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api"
+  status = 200
 
 [[redirects]]
   from = "/*"

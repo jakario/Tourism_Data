@@ -3,7 +3,7 @@ import os
 from typing import Dict, Any
 
 
-DATABASE_PATH: str = "data/tourism_cache.db"
+DATABASE_PATH: str = os.environ.get("DATABASE_PATH", "data/tourism_cache.db")
 
 
 def get_db_path() -> str:
@@ -16,17 +16,24 @@ def set_db_path(path: str) -> None:
 
 
 def get_connection() -> sqlite3.Connection:
-    db_dir = os.path.dirname(DATABASE_PATH)
+    path = DATABASE_PATH
+    db_dir = os.path.dirname(path)
     if db_dir and not os.path.exists(db_dir):
         os.makedirs(db_dir, exist_ok=True)
-    conn = sqlite3.connect(DATABASE_PATH)
+    if db_dir and os.path.isdir(db_dir) and not os.access(db_dir, os.W_OK):
+        conn = sqlite3.connect(f"file:{path}?mode=ro", uri=True)
+    else:
+        conn = sqlite3.connect(path)
+        conn.execute("PRAGMA journal_mode=WAL")
     conn.row_factory = sqlite3.Row
-    conn.execute("PRAGMA journal_mode=WAL")
     conn.execute("PRAGMA foreign_keys=ON")
     return conn
 
 
 def init_db() -> None:
+    path = DATABASE_PATH
+    if os.path.exists(path):
+        return
     conn = get_connection()
     try:
         conn.executescript(SCHEMA_SQL)
