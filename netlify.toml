@@ -1,6 +1,10 @@
 [build]
   publish = "public"
-  command = "cp templates/index.html public/index.html"
+  command = """
+    mkdir -p public netlify/functions/data &&
+    cp templates/index.html public/index.html &&
+    cp data/tourism_cache.db netlify/functions/data/tourism_cache.db
+  """
 
 [functions]
   directory = "netlify/functions"

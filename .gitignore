@@ -28,6 +28,9 @@ Thumbs.db
 public/
 !public/.gitkeep
 
+# Netlify function — DB copy copied during build
+netlify/functions/data/
+
 # IDE
 .idea/
 .vscode/
